@@ -21,11 +21,9 @@
   var LaundryCollection = Backbone.Collection.extend({
 
     model: IconModel,
-    url: 'https://www.kimonolabs.com/api/d1l8cliq?apikey=QC8Xzp85dDnMT5AWCRe63aCF4EicyGuM',
     parse: function(response) {
-      //console.log('fetched:', response.results.washing);
-      //return response.results.washing;
       data = response.results;
+      console.log(data);
       extracted = [];
       _.each(data, function(big) {
         for (var i=0; i<big.length; i++) {
@@ -112,7 +110,7 @@
   var items = new LaundryCollection();
   var itemsView = new LaundryView({collection: items});
   items.fetch({
-    dataType: 'jsonp'
+    url: "wikidata.json",
   });
 
 })(jQuery);
